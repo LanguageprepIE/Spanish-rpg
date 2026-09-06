@@ -33,6 +33,22 @@
     }, Math.abs(next - previous) < 8 ? 260 : 720);
   }
 
+  function travelTo(location) {
+    const curtain = document.querySelector(".scene-curtain");
+    if (curtain) curtain.classList.add("is-covering");
+    window.setTimeout(function () {
+      state.location = location;
+      state.playerPosition = location === "plaza" ? 82 : 14;
+      activeDialogue = null;
+      document.body.classList.add("scene-arriving");
+      autosave();
+      render();
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () { document.body.classList.remove("scene-arriving"); });
+      });
+    }, 430);
+  }
+
   function newGame() { state = RPG.State.fresh(); selectedCharacter = null; state.scene = "character"; render(); }
   function begin() {
     const input = document.getElementById("player-name");
@@ -107,7 +123,9 @@
     const npc = event.target.closest("[data-npc]");
     if (npc) { movePlayerTo(npc.dataset.x, function () { startDialogue(npc.dataset.npc); }); return; }
     const travel = event.target.closest("[data-travel]");
-    if (travel) { movePlayerTo(travel.dataset.x, function () { state.location = travel.dataset.travel; state.playerPosition = state.location === "plaza" ? 82 : 15; activeDialogue = null; autosave(); render(); }); return; }
+    if (travel) { movePlayerTo(travel.dataset.x, function () { travelTo(travel.dataset.travel); }); return; }
+    const inspect = event.target.closest("[data-inspect]");
+    if (inspect) { movePlayerTo(inspect.dataset.x, function () { RPG.UI.inspect(inspect.dataset.inspect); }); return; }
     const talk = event.target.closest("[data-talk]"); if (talk) { startDialogue(talk.dataset.talk); return; }
     const choice = event.target.closest("[data-choice]"); if (choice) { choose(Number(choice.dataset.choice)); return; }
     const shop = event.target.closest("[data-shop]"); if (shop) { shopChoice(shop.dataset.shop); return; }

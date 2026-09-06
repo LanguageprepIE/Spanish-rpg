@@ -1,5 +1,9 @@
 # El misterio de Salamanca
 
+## Version 0.3 — distinct explorable scenes
+
+Plaza Mayor, Café Niebla and Librería Atlas now have separate original backgrounds. Entering and leaving locations uses a fade transition, and each scene contains an environmental hotspot that the investigator walks towards before examining. The complete original mystery loop remains playable.
+
 ## Version 0.2 — point-and-click prototype
 
 The game surface has been rebuilt as an original point-and-click adventure. The player character now walks across the scene when the player taps or clicks, approaches visible NPCs before conversations, and enters locations through scene hotspots. Mission guidance and controls are in English; Spanish remains the language used for conversations, clues and puzzles.

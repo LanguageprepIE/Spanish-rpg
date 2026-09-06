@@ -161,13 +161,11 @@ h1 span { display: block; color: var(--gold-bright); font-style: italic; font-si
 .objective { flex: 1; max-width: 620px; display: grid; gap: 2px; padding: 7px 14px; border-left: 1px solid var(--line); }
 .objective span { color: var(--gold); text-transform: uppercase; letter-spacing: .09em; font-size: .7rem; font-weight: 800; }
 .objective strong { font-size: .92rem; }
-.adventure-stage { position: relative; min-height: 0; overflow: hidden; isolation: isolate; cursor: crosshair; background: center 43% / cover no-repeat url("salamanca-plaza.jpg"); }
+.adventure-stage { position: relative; min-height: 0; overflow: hidden; isolation: isolate; cursor: crosshair; background: center 50% / cover no-repeat var(--scene-bg); }
 .adventure-stage::after { content: ""; position: absolute; z-index: 7; left: 0; right: 0; bottom: 0; height: 12%; pointer-events: none; background: linear-gradient(transparent, rgba(1,7,12,.7)); }
 .sky-shade { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: linear-gradient(180deg, rgba(2,8,16,.08) 40%, rgba(2,8,16,.36)); }
-.stage-cafe { background-position: 18% center; filter: sepia(.12); }
-.stage-cafe .sky-shade { background: linear-gradient(90deg, rgba(31,12,6,.48), rgba(3,9,14,.18)), radial-gradient(circle at 70% 45%, rgba(224,136,47,.34), transparent 32%); }
-.stage-bookshop { background-position: 80% center; filter: saturate(.72); }
-.stage-bookshop .sky-shade { background: linear-gradient(90deg, rgba(3,10,15,.52), rgba(45,31,15,.2)), radial-gradient(circle at 68% 40%, rgba(224,180,90,.24), transparent 30%); }
+.stage-cafe .sky-shade { background: linear-gradient(180deg, rgba(3,8,13,.04), rgba(3,8,13,.16)); }
+.stage-bookshop .sky-shade { background: linear-gradient(180deg, rgba(3,8,13,.05), rgba(3,8,13,.2)); }
 .player-wrap { --player-x: 18%; position: absolute; z-index: 5; left: var(--player-x); bottom: 3%; width: clamp(82px, 10vw, 142px); transform: translateX(-50%); transition: left .7s cubic-bezier(.3,.7,.2,1); pointer-events: none; filter: drop-shadow(0 10px 9px rgba(0,0,0,.6)); }
 .player-character { display: block; width: 100%; height: auto; transform-origin: center bottom; }
 .player-wrap.facing-left .player-character { transform: scaleX(-1); }
@@ -185,6 +183,16 @@ h1 span { display: block; color: var(--gold-bright); font-style: italic; font-si
 .cafe-exit { right: 4%; top: 24%; }
 .bookshop-exit { left: 3%; top: 28%; }
 .plaza-exit { left: 3%; top: 22%; }
+.object-hotspot { position: absolute; z-index: 6; border: 1px solid transparent; background: transparent; color: var(--ink); cursor: pointer; }
+.object-hotspot span { opacity: 0; display: block; padding: 6px 10px; border: 1px solid var(--gold); border-radius: 999px; background: rgba(4,12,20,.9); transition: opacity .15s ease; white-space: nowrap; }
+.object-hotspot:focus-visible span, .object-hotspot:active span, .object-hotspot:hover span { opacity: 1; }
+.fountain-hotspot { left: 50%; top: 43%; width: 18%; height: 28%; }
+.menu-hotspot { left: 54%; top: 15%; width: 20%; height: 30%; }
+.shelves-hotspot { left: 35%; top: 8%; width: 25%; height: 48%; }
+.support-line { margin-top: 16px; padding: 12px; border-left: 3px solid var(--gold); color: var(--muted); background: rgba(255,255,255,.04); }
+.scene-curtain { position: absolute; z-index: 50; inset: 0; display: grid; place-items: center; opacity: 0; pointer-events: none; background: #03080d; transition: opacity .42s ease; }
+.scene-curtain span { color: var(--gold-bright); font-family: Georgia, serif; font-size: clamp(1.6rem, 4vw, 3.2rem); letter-spacing: .04em; }
+.scene-curtain.is-covering, .scene-arriving .scene-curtain { opacity: 1; }
 .deduction-marker { position: absolute; z-index: 8; right: 4%; bottom: 15%; min-height: 50px; padding: 10px 15px; border-radius: 12px; border: 1px solid var(--gold-bright); background: #bd7d2e; color: #111; font-weight: 800; cursor: pointer; }
 .walk-prompt { position: absolute; z-index: 8; left: 50%; bottom: 2%; translate: -50% 0; padding: 6px 12px; border-radius: 999px; background: rgba(3,9,15,.72); color: rgba(255,255,255,.78); font-size: .78rem; pointer-events: none; white-space: nowrap; }
 .adventure-bar { position: relative; z-index: 12; display: flex; align-items: center; gap: 8px; min-height: 64px; padding: 9px 14px max(9px, env(safe-area-inset-bottom)); background: rgba(4,11,18,.97); border-top: 1px solid var(--line); }
